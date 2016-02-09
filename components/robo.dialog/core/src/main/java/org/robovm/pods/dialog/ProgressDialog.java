@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 RoboVM AB
+ * Copyright (C) 2016 RoboVM AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,14 @@ public interface ProgressDialog extends Dialog {
 
     double getProgress();
 
-    public static class Builder extends DialogBuilder<Builder, ProgressDialog> {
+    class Builder extends DialogBuilder<Builder, ProgressDialog> {
         ProgressDialogStyle style;
+
+        public Builder() {}
+
+        public Builder(String title, String message) {
+            super(title, message);
+        }
 
         public Builder setProgressStyle(ProgressDialogStyle style) {
             this.style = style;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 RoboVM AB
+ * Copyright (C) 2016 RoboVM AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,16 @@
  */
 package org.robovm.pods.dialog;
 
-abstract class DialogBuilder<T extends DialogBuilder<T, R>, R> {
+abstract class DialogBuilder<T extends DialogBuilder<T, R>, R extends Dialog> {
     String title;
     String message;
 
     DialogBuilder() {}
+
+    DialogBuilder(String title, String message) {
+        this.title = title;
+        this.message = message;
+    }
 
     @SuppressWarnings("unchecked")
     public T setTitle(String title) {
@@ -34,4 +39,10 @@ abstract class DialogBuilder<T extends DialogBuilder<T, R>, R> {
     }
 
     public abstract R build();
+
+    public R show() {
+        R dialog = build();
+        dialog.show();
+        return dialog;
+    }
 }

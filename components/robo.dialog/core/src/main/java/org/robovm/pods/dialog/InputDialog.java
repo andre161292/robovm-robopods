@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 RoboVM AB
+ * Copyright (C) 2016 RoboVM AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,19 @@ package org.robovm.pods.dialog;
 import org.robovm.pods.Platform;
 
 public interface InputDialog extends AlertDialog {
-    public static class Builder extends AlertDialog.Builder {
+    class Builder extends AlertDialog.Builder {
         InputDialogStyle inputStyle;
         DialogTextInputChangeListener inputChangeListener;
+
+        public Builder() {}
+
+        public Builder(String title, String message, String button) {
+            super(title, message, button);
+        }
+
+        public Builder(String title, String message, String button, DialogButtonClickListener buttonListener) {
+            super(title, message, button, buttonListener);
+        }
 
         public Builder setInputStyle(InputDialogStyle inputStyle) {
             this.inputStyle = inputStyle;

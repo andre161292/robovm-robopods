@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.robovm</groupId>
         <artifactId>robopods-fabric-parent</artifactId>
-        <version>1.13.0</version>
+        <version>1.13.1-SNAPSHOT</version>
     </parent>
     <artifactId>robopods-fabric-android</artifactId>
     <name>RoboPods Fabric Android</name>
@@ -94,6 +94,10 @@
                       </execution>
                   </executions>
               </plugin>-->
+            <plugin>
+                <groupId>net.orfjackal.retrolambda</groupId>
+                <artifactId>retrolambda-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>

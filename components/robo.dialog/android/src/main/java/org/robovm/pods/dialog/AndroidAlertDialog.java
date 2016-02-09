@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 RoboVM AB
+ * Copyright (C) 2016 RoboVM AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,13 @@
  */
 package org.robovm.pods.dialog;
 
-import java.util.Collections;
-import java.util.List;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface.OnClickListener;
 import org.robovm.pods.Platform;
 import org.robovm.pods.Platform.AndroidPlatform;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface.OnClickListener;
+import java.util.Collections;
+import java.util.List;
 
 public class AndroidAlertDialog implements org.robovm.pods.dialog.AlertDialog {
     private final AlertDialog alert;
@@ -69,9 +68,7 @@ public class AndroidAlertDialog implements org.robovm.pods.dialog.AlertDialog {
         if (button.getClickListener() == null) {
             return null;
         }
-        return (dialog, which) -> {
-            button.getClickListener().onClick(AndroidAlertDialog.this, button);
-        };
+        return (dialog, which) -> button.getClickListener().onClick(AndroidAlertDialog.this, button);
     }
 
     @Override

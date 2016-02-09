@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 RoboVM AB
+ * Copyright (C) 2016 RoboVM AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,29 @@
  */
 package org.robovm.pods.dialog;
 
+import org.robovm.pods.Platform;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.robovm.pods.Platform;
 
 public interface AlertDialog extends Dialog {
     String getTextInput();
 
-    public static class Builder extends DialogBuilder<Builder, AlertDialog> {
+    class Builder extends DialogBuilder<Builder, AlertDialog> {
         List<DialogButton> buttons = new ArrayList<>();
+
+        public Builder() {}
+
+        public Builder(String title, String message, String button) {
+            this(title, message, button, null);
+        }
+
+        public Builder(String title, String message, String button, DialogButtonClickListener buttonListener) {
+            super(title, message);
+            if (button != null) {
+                addButton(new DialogButton(button, buttonListener));
+            }
+        }
 
         public Builder addButton(DialogButton button) {
             buttons.add(button);

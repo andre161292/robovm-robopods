@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 RoboVM AB
+ * Copyright (C) 2016 RoboVM AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,9 +40,8 @@ public class IOSInputDialog extends IOSAlertDialog implements InputDialog {
 
     private void addTextFieldListener(UITextField textField, DialogTextInputChangeListener inputChangeListener) {
         if (inputChangeListener != null) {
-            textField.addOnEditingChangedListener((control) -> {
-                inputChangeListener.onChange(IOSInputDialog.this, getTextInput());
-            });
+            textField.addOnEditingChangedListener(
+                    (control) -> inputChangeListener.onChange(IOSInputDialog.this, getTextInput()));
         }
     }
 
