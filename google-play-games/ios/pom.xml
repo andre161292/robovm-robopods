@@ -4,6 +4,7 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-google-play-games-parent</artifactId>
         <version>1.13.0</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-google-play-games-ios</artifactId>
     <name>RoboPods Google Play Game Services iOS</name>

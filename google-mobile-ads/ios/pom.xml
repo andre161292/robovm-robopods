@@ -4,6 +4,7 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-google-mobile-ads-parent</artifactId>
         <version>1.13.0</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-google-mobile-ads-ios</artifactId>
     <name>RoboPods Google Mobile Ads iOS</name>

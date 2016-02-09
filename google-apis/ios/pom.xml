@@ -4,6 +4,7 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-google-apis-parent</artifactId>
         <version>1.13.0</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-google-apis-ios</artifactId>
     <name>RoboPods Google APIs iOS</name>

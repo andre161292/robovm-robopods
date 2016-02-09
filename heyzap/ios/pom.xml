@@ -4,6 +4,7 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-heyzap-parent</artifactId>
         <version>1.13.0</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-heyzap-ios</artifactId>
     <name>RoboPods Heyzap iOS</name>

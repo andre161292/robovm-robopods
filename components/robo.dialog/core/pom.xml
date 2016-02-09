@@ -4,6 +4,7 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-dialog-parent</artifactId>
         <version>1.13.0</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-dialog-core</artifactId>
     <name>Robo.Dialog Core</name>

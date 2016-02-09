@@ -4,6 +4,7 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-google-symbol-utilities-parent</artifactId>
         <version>1.13.1-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-google-symbol-utilities-ios</artifactId>
     <name>RoboPods Google Symbol Interchange iOS</name>
