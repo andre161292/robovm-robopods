@@ -36,7 +36,7 @@ import org.robovm.pods.bolts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+@Availability({ @PlatformVersion(platform = Platform.iOS), @PlatformVersion(platform = Platform.tvOS) })
 /*</javadoc>*/
 /*<annotations>*/@Library(Library.INTERNAL) @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PFPurchase/*</name>*/ 
@@ -48,6 +48,7 @@ import org.robovm.pods.bolts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PFPurchase() {}
+    protected PFPurchase(Handle h, long handle) { super(h, handle); }
     protected PFPurchase(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

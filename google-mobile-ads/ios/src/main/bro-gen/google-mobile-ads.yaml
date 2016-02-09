@@ -6,7 +6,7 @@ include:
     - ../../../../../../robovm/cocoatouch/src/main/bro-gen/coregraphics.yaml
     - ../../../../../../robovm/cocoatouch/src/main/bro-gen/storekit.yaml
 clang_args: ['-x', 'objective-c']
-header_root: '/../robopods/META-INF/robovm/ios/libs/'
+header_root: /../robopods/META-INF/robovm/ios/libs
 headers:
     - GoogleMobileAds.framework/Headers/GoogleMobileAds.h
 typedefs:
@@ -47,6 +47,9 @@ classes:
             'categoryExclusions':
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
+        methods:
+            '+updateCorrelator':
+                exclude: true # deprecated
     GADAdLoader: # DONE
         methods:
             '-initWithAdUnitID:rootViewController:adTypes:options:':
@@ -60,7 +63,11 @@ classes:
             '-loadRequest:':
                 trim_after_first_colon: true
     GADAdLoaderOptions: {} # DONE
-    GADAdSize: {}
+    GADAdReward: # DONE
+        methods:
+            '-initWithRewardType:rewardAmount:':
+                name: init
+    GADAdSize: {} # DONE
     GADBannerView: # DONE
         properties:
             '(hasAutoRefreshed|mediatedAdView)':
@@ -70,6 +77,8 @@ classes:
                 name: init
             '-loadRequest:':
                 trim_after_first_colon: true
+    GADCorrelator: {} # DONE
+    GADCorrelatorAdLoaderOptions: {} # DONE
     GADCustomEventExtras: # DONE
         methods:
             '-setExtras:forLabel:':
@@ -108,8 +117,25 @@ classes:
                 trim_after_first_colon: true
             '-presentFromRootViewController:':
                 name: present
+    GADMediatedNativeAdNotificationSource: # DONE
+        methods:
+            '+mediatedNativeAdWillPresentScreen:':
+                name: willPresentScreen
+            '+mediatedNativeAdWillDismissScreen:':
+                name: willDismissScreen
+            '+mediatedNativeAdDidDismissScreen:':
+                name: didDismissScreen
+            '+mediatedNativeAdWillLeaveApplication:':
+                name: willLeaveApplication
+    GADMobileAds: # DONE
+        methods:
+            '+sharedInstance':
+                property: true
     GADNativeAd: {} # DONE
-    GADNativeAdImage: {} # DONE
+    GADNativeAdImage: # DONE
+        methods:
+            '-init.*':
+                name: init
     GADNativeAdImageAdLoaderOptions: # DONE
         properties:
             'disableImageLoading':
@@ -136,6 +162,14 @@ classes:
                 name: getString
             '-performClickOnAssetWithKey:customClickHandler:':
                 name: performClickOnAsset
+    GADRewardBasedVideoAd: # DONE
+        methods:
+            '-loadRequest:withAdUnitID:userID:':
+                trim_after_first_colon: true
+            '-presentFromRootViewController:':
+                name: present
+            '+sharedInstance':
+                property: true
     GADRequest: # DONE
         skip_def_constructor: true
         properties:
@@ -157,14 +191,15 @@ classes:
                 parameters:
                     aClass:
                         type: 'Class<? extends GADAdNetworkExtras>'
-            '-setLocation.*':
+            '-setLocationWithLatitude:longitude:accuracy:':
                 name: setLocation
+            '-setLocationWithDescription:':
+                exclude: true # deprecated
             '-tagForChildDirectedTreatment:':
                 trim_after_first_colon: true
             '+request':
                 name: create
-                visibility: protected
-                return_type: '@Pointer long'
+                constructor: true
             '+sdkVersion':
                 property: true
     GADRequestError: # DONE
@@ -184,6 +219,10 @@ protocols:
         methods:
             '-interstitial:didReceiveCustomRenderedAd:':
                 name: didReceiveCustomRenderedAd
+    GADAdDelegate: # DONE
+        methods:
+            '-ad:shouldChangeAudioSessionToCategory:':
+                name: shouldChangeAudioSessionToCategory
     GADAdLoaderDelegate: # DONE
         methods:
             '-adLoader:didFailToReceiveAdWithError:':
@@ -259,6 +298,20 @@ protocols:
                 name: didDismiss
             '-customEventInterstitialWillLeaveApplication:':
                 name: willLeaveApplication
+    GADCustomEventNativeAd: # DONE
+        methods:
+            '-requestNativeAdWithParameter:request:adTypes:options:rootViewController:':
+                name: requestNativeAd
+                parameters:
+                    adTypes:
+                        type: List<GADAdLoaderAdType>
+                        marshaler: GADAdLoaderAdType.AsListMarshaler
+    GADCustomEventNativeAdDelegate: # DONE
+        methods:
+            '-customEventNativeAd:didReceiveMediatedNativeAd:':
+                name: didReceiveMediatedNativeAd
+            '-customEventNativeAd:didFailToLoadWithError:':
+                name: didFailToLoad
     GADDefaultInAppPurchaseDelegate: # DONE
         methods:
             '-userDidPayForPurchase:':
@@ -283,6 +336,34 @@ protocols:
                 name: didDismissScreen
             '-interstitialWillLeaveApplication:':
                 name: willLeaveApplication
+    GADMediatedNativeAd: # DONE
+        methods:
+            '-mediatedNativeAdDelegate':
+                property: true
+            '-extraAssets':
+                property: true
+    GADMediatedNativeAdDelegate: # DONE
+        methods:
+            '-mediatedNativeAd:didRenderInView:':
+                name: didRenderInView
+            '-mediatedNativeAdDidRecordImpression:':
+                name: didRecordImpression
+            '-mediatedNativeAd:didRecordClickOnAssetWithName:view:viewController:':
+                name: didRecordClickOnAsset
+    GADMediatedNativeAppInstallAd: # DONE
+        methods:
+            '-(headline|body|icon|callToAction|starRating|store|price)':
+                property: true
+            '-images':
+                property: true
+                return_type: NSArray<GADNativeAdImage>
+    GADMediatedNativeContentAd: # DONE
+        methods:
+            '-(headline|body|logo|callToAction|advertiser)':
+                property: true
+            '-images':
+                property: true
+                return_type: NSArray<GADNativeAdImage>
     GADNativeAdDelegate: # DONE
         methods:
             '-nativeAdWillPresentScreen:':
@@ -309,6 +390,22 @@ protocols:
                 return_marshaler: NSArray.AsStringListMarshaler
             '-adLoader:didReceiveNativeCustomTemplateAd:':
                 name: didReceiveNativeCustomTemplateAd
+    GADRewardBasedVideoAdDelegate: # DONE
+        methods:
+            '-rewardBasedVideoAdDidReceiveAd:':
+                name: didReceiveAd
+            '-rewardBasedVideoAdDidOpen:':
+                name: didOpen
+            '-rewardBasedVideoAdDidStartPlaying:':
+                name: didStartPlaying
+            '-rewardBasedVideoAdDidClose:':
+                name: didClose
+            '-rewardBasedVideoAdWillLeaveApplication:':
+                name: willLeaveApplication
+            '-rewardBasedVideoAd:didRewardUserWithReward:':
+                name: didRewardUser
+            '-rewardBasedVideoAd:didFailToLoadWithError:':
+                name: didFailToLoad
 
 functions:
     # GADAdSize

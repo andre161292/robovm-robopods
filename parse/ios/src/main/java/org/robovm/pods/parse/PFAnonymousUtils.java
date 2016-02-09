@@ -48,6 +48,7 @@ import org.robovm.pods.bolts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PFAnonymousUtils() {}
+    protected PFAnonymousUtils(Handle h, long handle) { super(h, handle); }
     protected PFAnonymousUtils(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -59,8 +60,6 @@ import org.robovm.pods.bolts.*;
     public static native BFTask<PFUser> logInInBackground();
     @Method(selector = "logInWithBlock:")
     public static native void logIn(@Block PFLogInCallback block);
-    @Method(selector = "logInWithTarget:selector:")
-    public static native void logIn(NSObject target, Selector selector);
     @Method(selector = "isLinkedWithUser:")
     public static native boolean isLinked(PFUser user);
     /*</methods>*/

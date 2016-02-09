@@ -19,7 +19,6 @@ package org.robovm.pods.parse.ui;
 import java.io.*;
 import java.nio.*;
 import java.util.*;
-
 import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
@@ -47,8 +46,11 @@ import org.robovm.pods.parse.*;
     /*<bind>*/static { ObjCRuntime.bind(PFQueryCollectionViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected PFQueryCollectionViewController(Handle h, long handle) { super(h, handle); }
     protected PFQueryCollectionViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithClassName:")
     public PFQueryCollectionViewController(String className) { super((SkipInit) null); initObject(init(className)); }
+    @Method(selector = "initWithCollectionViewLayout:className:")
     public PFQueryCollectionViewController(UICollectionViewLayout layout, String className) { super((SkipInit) null); initObject(init(layout, className)); }
     /*</constructors>*/
     public PFQueryCollectionViewController(UICollectionViewLayout layout, Class<T> subclass) {
@@ -116,9 +118,9 @@ import org.robovm.pods.parse.*;
     @Method(selector = "removeObjectsAtIndexPaths:")
     public native void removeObjects(NSArray<NSIndexPath> indexes);
     @Method(selector = "loadObjects")
-    public native BFTask<Void> loadObjects();
+    public native BFTask<NSArray<T>> loadObjects();
     @Method(selector = "loadObjects:clear:")
-    public native BFTask<Void> loadObjects(@MachineSizedSInt long page, boolean clear);
+    public native BFTask<NSArray<T>> loadObjects(@MachineSizedSInt long page, boolean clear);
     @Method(selector = "loadNextPage")
     public native void loadNextPage();
     @Method(selector = "clear")

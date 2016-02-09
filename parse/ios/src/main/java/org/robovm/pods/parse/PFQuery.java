@@ -48,8 +48,10 @@ import org.robovm.pods.bolts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PFQuery() {}
+    protected PFQuery(Handle h, long handle) { super(h, handle); }
     protected PFQuery(SkipInit skipInit) { super(skipInit); }
-    public PFQuery(String newClassName) { super((SkipInit) null); initObject(init(newClassName)); }
+    @Method(selector = "initWithClassName:")
+    public PFQuery(String className) { super((SkipInit) null); initObject(init(className)); }
     /*</constructors>*/
     
     private static final long sel_query = Selector.register("query").getHandle();
@@ -107,6 +109,8 @@ import org.robovm.pods.bolts.*;
     public native double getMaxCacheAge();
     @Property(selector = "setMaxCacheAge:")
     public native void setMaxCacheAge(double v);
+    @Property(selector = "hasCachedResult")
+    public native boolean hasCachedResult();
     @Property(selector = "trace")
     public native boolean isTrace();
     @Property(selector = "setTrace:")
@@ -212,7 +216,7 @@ import org.robovm.pods.bolts.*;
     }
     /*<methods>*/
     @Method(selector = "initWithClassName:")
-    protected native @Pointer long init(String newClassName);
+    protected native @Pointer long init(String className);
     @Method(selector = "includeKey:")
     public native PFQuery<T> include(String key);
     @Method(selector = "selectKeys:")
@@ -279,66 +283,24 @@ import org.robovm.pods.bolts.*;
     public native PFQuery<T> orderBySortDescriptor(NSSortDescriptor sortDescriptor);
     @Method(selector = "orderBySortDescriptors:")
     public native PFQuery<T> orderBySortDescriptors(NSArray<NSSortDescriptor> sortDescriptors);
-    public T get(String objectId) throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       T result = get(objectId, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "getObjectWithId:error:")
-    private native T get(String objectId, NSError.NSErrorPtr error);
     @Method(selector = "getObjectInBackgroundWithId:")
     public native BFTask<T> getInBackground(String objectId);
     @Method(selector = "getObjectInBackgroundWithId:block:")
     protected native void getInBackground0(String objectId, @Block PFGetCallback<PFObject> block);
-    @Method(selector = "getObjectInBackgroundWithId:target:selector:")
-    public native void getInBackground(String objectId, NSObject target, Selector selector);
-    public NSArray<T> find() throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       NSArray<T> result = find(ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "findObjects:")
-    private native NSArray<T> find(NSError.NSErrorPtr error);
     @Method(selector = "findObjectsInBackground")
     public native BFTask<NSArray<T>> findInBackground();
     @Method(selector = "findObjectsInBackgroundWithBlock:")
     protected native void findInBackground0(@Block PFFindCallback<PFObject> block);
-    @Method(selector = "findObjectsInBackgroundWithTarget:selector:")
-    public native void findInBackground(NSObject target, Selector selector);
-    public T getFirst() throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       T result = getFirst(ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "getFirstObject:")
-    private native T getFirst(NSError.NSErrorPtr error);
     @Method(selector = "getFirstObjectInBackground")
     public native BFTask<T> getFirstInBackground();
     @Method(selector = "getFirstObjectInBackgroundWithBlock:")
     protected native void getFirstInBackground0(@Block PFGetCallback<PFObject> block);
-    @Method(selector = "getFirstObjectInBackgroundWithTarget:selector:")
-    public native void getFirstInBackground(NSObject target, Selector selector);
-    public @MachineSizedSInt long count() throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       long result = count(ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "countObjects:")
-    private native @MachineSizedSInt long count(NSError.NSErrorPtr error);
     @Method(selector = "countObjectsInBackground")
     public native BFTask<NSNumber> countInBackground();
     @Method(selector = "countObjectsInBackgroundWithBlock:")
     public native void countInBackground(@Block PFCountCallback block);
-    @Method(selector = "countObjectsInBackgroundWithTarget:selector:")
-    public native void countInBackground(NSObject target, Selector selector);
     @Method(selector = "cancel")
     public native void cancel();
-    @Method(selector = "hasCachedResult")
-    public native boolean hasCachedResult();
     @Method(selector = "clearCachedResult")
     public native void clearCachedResult();
     @Method(selector = "fromLocalDatastore")
@@ -355,6 +317,40 @@ import org.robovm.pods.bolts.*;
     public static native <T extends PFObject> PFQuery<T> getQuery(String className, NSPredicate predicate);
     @Method(selector = "orQueryWithSubqueries:")
     public static native <T extends PFObject> PFQuery<T> or(NSArray<PFQuery<?>> queries);
+    @Method(selector = "clearAllCachedResults")
+    public static native void clearAllCachedResults();
+    public T get(String objectId) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       T result = get(objectId, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "getObjectWithId:error:")
+    private native T get(String objectId, NSError.NSErrorPtr error);
+    public NSArray<T> find() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSArray<T> result = find(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "findObjects:")
+    private native NSArray<T> find(NSError.NSErrorPtr error);
+    public T getFirst() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       T result = getFirst(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "getFirstObject:")
+    private native T getFirst(NSError.NSErrorPtr error);
+    public @MachineSizedSInt long count() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long result = count(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "countObjects:")
+    private native @MachineSizedSInt long count(NSError.NSErrorPtr error);
     public static <T extends PFObject> T get(String objectClass, String objectId) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        T result = get(objectClass, objectId, ptr);
@@ -371,7 +367,5 @@ import org.robovm.pods.bolts.*;
     }
     @Method(selector = "getUserObjectWithId:error:")
     private static native PFUser getUser(String objectId, NSError.NSErrorPtr error);
-    @Method(selector = "clearAllCachedResults")
-    public static native void clearAllCachedResults();
     /*</methods>*/
 }

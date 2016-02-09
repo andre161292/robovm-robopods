@@ -4,10 +4,10 @@ Collect, configure, and analyze your data to reach the right audience.
 
 ## Available RoboPods
 
-| Platform    | Version |
-|-------------|---------|
-| [iOS](ios/) | 3.12    |
-|             |         |
+| Platform                 | Version | Description                                     |
+|--------------------------|---------|-------------------------------------------------|
+| [iOS](ios/)              | 3.15    | Google Analytics iOS binding                    |
+| [iOS-noads](ios-noads/)  | 3.15    | Google Analytics iOS binding without ad support |
 
 ## Official website
 

@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "../../FBSDKCoreKit.framework/Headers/FBSDKMacros.h"
+#import <FBSDKCoreKit/FBSDKMacros.h>
 
 /*!
  @abstract The error domain for all errors from FBSDKShareKit.
@@ -47,4 +47,9 @@ typedef NS_ENUM(NSInteger, FBSDKShareErrorCode)
    @discussion Use the canShare methods to check for this case before calling show.
    */
   FBSDKShareDialogNotAvailableErrorCode,
+
+  /*!
+   @The error code for unknown errors.
+   */
+  FBSDKShareUnknownErrorCode,
 };

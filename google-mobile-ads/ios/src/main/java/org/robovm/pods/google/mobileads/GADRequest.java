@@ -45,17 +45,15 @@ import org.robovm.apple.storekit.*;
     /*<bind>*/static { ObjCRuntime.bind(GADRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected GADRequest(Handle h, long handle) { super(h, handle); }
     protected GADRequest(SkipInit skipInit) { super(skipInit); }
+    public GADRequest() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
-    public GADRequest() {
-        super(create());
-        retain(getHandle());
-    }
     /*<properties>*/
     @Property(selector = "testDevices")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getTestDevices();
     @Property(selector = "setTestDevices:")
-    public native void setTestDevices(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class)List<String> v);
+    public native void setTestDevices(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
     @Property(selector = "gender")
     public native GADGender getGender();
     @Property(selector = "setGender:")
@@ -67,7 +65,7 @@ import org.robovm.apple.storekit.*;
     @Property(selector = "keywords")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getKeywords();
     @Property(selector = "setKeywords:")
-    public native void setKeywords(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class)List<String> v);
+    public native void setKeywords(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
     @Property(selector = "contentURL")
     public native String getContentURL();
     @Property(selector = "setContentURL:")
@@ -90,8 +88,6 @@ import org.robovm.apple.storekit.*;
     public native void removeAdNetworkExtras(Class<? extends GADAdNetworkExtras> aClass);
     @Method(selector = "setLocationWithLatitude:longitude:accuracy:")
     public native void setLocation(@MachineSizedFloat double latitude, @MachineSizedFloat double longitude, @MachineSizedFloat double accuracyInMeters);
-    @Method(selector = "setLocationWithDescription:")
-    public native void setLocation(String locationDescription);
     @Method(selector = "tagForChildDirectedTreatment:")
     public native void tagForChildDirectedTreatment(boolean childDirectedTreatment);
     @Method(selector = "request")

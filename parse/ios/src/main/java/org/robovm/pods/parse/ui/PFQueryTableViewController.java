@@ -46,8 +46,11 @@ import org.robovm.pods.parse.*;
     /*<bind>*/static { ObjCRuntime.bind(PFQueryTableViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected PFQueryTableViewController(Handle h, long handle) { super(h, handle); }
     protected PFQueryTableViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithStyle:className:")
     public PFQueryTableViewController(UITableViewStyle style, String className) { super((SkipInit) null); initObject(init(style, className)); }
+    @Method(selector = "initWithClassName:")
     public PFQueryTableViewController(String className) { super((SkipInit) null); initObject(init(className)); }
     /*</constructors>*/
     public PFQueryTableViewController(UITableViewStyle style, Class<T> subclass) {
@@ -127,15 +130,15 @@ import org.robovm.pods.parse.*;
     @Method(selector = "removeObjectAtIndexPath:animated:")
     public native void removeObject(NSIndexPath indexPath, boolean animated);
     @Method(selector = "removeObjectsAtIndexPaths:")
-    public native void removeObjects(NSArray<NSIndexPath> indexes);
+    public native void removeObjects(NSArray<NSIndexPath> indexPaths);
     @Method(selector = "removeObjectsAtIndexPaths:animated:")
-    public native void removeObjects(NSArray<NSIndexPath> indexes, boolean animated);
+    public native void removeObjects(NSArray<NSIndexPath> indexPaths, boolean animated);
     @Method(selector = "clear")
     public native void clear();
     @Method(selector = "loadObjects")
-    public native BFTask<Void> loadObjects();
+    public native BFTask<NSArray<T>> loadObjects();
     @Method(selector = "loadObjects:clear:")
-    public native BFTask<Void> loadObjects(@MachineSizedSInt long page, boolean clear);
+    public native BFTask<NSArray<T>> loadObjects(@MachineSizedSInt long page, boolean clear);
     @Method(selector = "loadNextPage")
     public native void loadNextPage();
     @Method(selector = "queryForTable")

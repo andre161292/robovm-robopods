@@ -36,7 +36,7 @@ import org.robovm.pods.bolts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+@Availability({ @PlatformVersion(platform = Platform.iOS) })
 /*</javadoc>*/
 /*<annotations>*/@Library(Library.INTERNAL) @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PFNetworkActivityIndicatorManager/*</name>*/ 
@@ -48,6 +48,7 @@ import org.robovm.pods.bolts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PFNetworkActivityIndicatorManager() {}
+    protected PFNetworkActivityIndicatorManager(Handle h, long handle) { super(h, handle); }
     protected PFNetworkActivityIndicatorManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

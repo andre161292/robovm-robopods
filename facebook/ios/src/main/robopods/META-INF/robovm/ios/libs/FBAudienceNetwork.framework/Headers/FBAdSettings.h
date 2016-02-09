@@ -20,7 +20,9 @@
 
 #import "FBAdDefines.h"
 
-FB_EXPORT NSString *const FBAudienceNetworkErrorDomain;
+NS_ASSUME_NONNULL_BEGIN
+
+FB_EXPORT NSString * const __nonnull FBAudienceNetworkErrorDomain;
 
 typedef NS_ENUM(NSInteger, FBAdLogLevel) {
     FBAdLogLevelNone,
@@ -62,7 +64,7 @@ FB_CLASS_EXPORT
 
  @param devicesHash The array of the device id to use test mode, can be obtained from debug log
  */
-+ (void)addTestDevices:(NSArray *)devicesHash;
++ (void)addTestDevices:(FB_NSArrayOf(NSString *)*)devicesHash;
 
 /*!
  @method
@@ -114,3 +116,5 @@ FB_CLASS_EXPORT
 + (void)setLogLevel:(FBAdLogLevel)level;
 
 @end
+
+NS_ASSUME_NONNULL_END

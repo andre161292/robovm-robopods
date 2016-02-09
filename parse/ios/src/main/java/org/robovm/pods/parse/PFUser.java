@@ -48,6 +48,7 @@ import org.robovm.pods.bolts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PFUser() {}
+    protected PFUser(Handle h, long handle) { super(h, handle); }
     protected PFUser(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -55,6 +56,8 @@ import org.robovm.pods.bolts.*;
     public native String getSessionToken();
     @Property(selector = "isNew")
     public native boolean isNew();
+    @Property(selector = "isAuthenticated")
+    public native boolean isAuthenticated();
     @Property(selector = "username")
     public native String getUsername();
     @Property(selector = "setUsername:")
@@ -71,9 +74,50 @@ import org.robovm.pods.bolts.*;
     /*<members>*//*</members>*/
     @Method(selector = "query")
     public static native PFQuery<PFUser> getQuery();
+    
+    public static void registerAuthenticationCallback(String authType, PFUserAuthenticationDelegate delegate) {
+        registerAuthenticationCallback0(delegate, authType);
+    }
+    
     /*<methods>*/
-    @Method(selector = "isAuthenticated")
-    public native boolean isAuthenticated();
+    @Method(selector = "signUpInBackground")
+    public native BFTask<Void> signUpInBackground();
+    @Method(selector = "signUpInBackgroundWithBlock:")
+    public native void signUpInBackground(@Block PFSignUpCallback block);
+    @Method(selector = "linkWithAuthTypeInBackground:authData:")
+    public native BFTask<Void> linkWithInBackground(String authType, NSDictionary<NSString, NSString> authData);
+    @Method(selector = "unlinkWithAuthTypeInBackground:")
+    public native BFTask<Void> unlinkFromInBackground(String authType);
+    @Method(selector = "isLinkedWithAuthType:")
+    public native boolean isLinked(String authType);
+    @Method(selector = "currentUser")
+    public static native PFUser getCurrentUser();
+    @Method(selector = "enableAutomaticUser")
+    public static native void enableAutomaticUser();
+    @Method(selector = "logInWithUsernameInBackground:password:")
+    public static native BFTask<PFUser> logInInBackground(String username, String password);
+    @Method(selector = "logInWithUsernameInBackground:password:block:")
+    public static native void logInInBackground(String username, String password, @Block PFLogInCallback block);
+    @Method(selector = "becomeInBackground:")
+    public static native BFTask<PFUser> becomeInBackground(String sessionToken);
+    @Method(selector = "becomeInBackground:block:")
+    public static native void becomeInBackground(String sessionToken, @Block PFLogInCallback block);
+    @Method(selector = "enableRevocableSessionInBackground")
+    public static native BFTask<Void> enableRevocableSessionInBackground();
+    @Method(selector = "enableRevocableSessionInBackgroundWithBlock:")
+    public static native void enableRevocableSessionInBackground(@Block PFUserSessionUpgradeCallback block);
+    @Method(selector = "logOutInBackground")
+    public static native BFTask<Void> logOutInBackground();
+    @Method(selector = "logOutInBackgroundWithBlock:")
+    public static native void logOutInBackground(@Block PFLogOutCallback block);
+    @Method(selector = "requestPasswordResetForEmailInBackground:")
+    public static native BFTask<Void> requestPasswordResetInBackground(String email);
+    @Method(selector = "requestPasswordResetForEmailInBackground:block:")
+    public static native void requestPasswordResetInBackground(String email, @Block PFRequestPasswordResetCallback block);
+    @Method(selector = "registerAuthenticationDelegate:forAuthType:")
+    private static native void registerAuthenticationCallback0(PFUserAuthenticationDelegate delegate, String authType);
+    @Method(selector = "logInWithAuthTypeInBackground:authData:")
+    public static native BFTask<PFUser> logInWithInBackground(String authType, NSDictionary<NSString, NSString> authData);
     public boolean signUp() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = signUp(ptr);
@@ -82,16 +126,6 @@ import org.robovm.pods.bolts.*;
     }
     @Method(selector = "signUp:")
     private native boolean signUp(NSError.NSErrorPtr error);
-    @Method(selector = "signUpInBackground")
-    public native BFTask<Void> signUpInBackground();
-    @Method(selector = "signUpInBackgroundWithBlock:")
-    public native void signUpInBackground(@Block PFSignUpCallback block);
-    @Method(selector = "signUpInBackgroundWithTarget:selector:")
-    public native void signUpInBackground(NSObject target, Selector selector);
-    @Method(selector = "currentUser")
-    public static native PFUser getCurrentUser();
-    @Method(selector = "enableAutomaticUser")
-    public static native void enableAutomaticUser();
     public static PFUser logIn(String username, String password) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        PFUser result = logIn(username, password, ptr);
@@ -100,12 +134,6 @@ import org.robovm.pods.bolts.*;
     }
     @Method(selector = "logInWithUsername:password:error:")
     private static native PFUser logIn(String username, String password, NSError.NSErrorPtr error);
-    @Method(selector = "logInWithUsernameInBackground:password:")
-    public static native BFTask<PFUser> logInInBackground(String username, String password);
-    @Method(selector = "logInWithUsernameInBackground:password:target:selector:")
-    public static native void logInInBackground(String username, String password, NSObject target, Selector selector);
-    @Method(selector = "logInWithUsernameInBackground:password:block:")
-    public static native void logInInBackground(String username, String password, @Block PFLogInCallback block);
     public static PFUser become(String sessionToken) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        PFUser result = become(sessionToken, ptr);
@@ -114,22 +142,8 @@ import org.robovm.pods.bolts.*;
     }
     @Method(selector = "become:error:")
     private static native PFUser become(String sessionToken, NSError.NSErrorPtr error);
-    @Method(selector = "becomeInBackground:")
-    public static native BFTask<PFUser> becomeInBackground(String sessionToken);
-    @Method(selector = "becomeInBackground:target:selector:")
-    public static native void becomeInBackground(String sessionToken, NSObject target, Selector selector);
-    @Method(selector = "becomeInBackground:block:")
-    public static native void becomeInBackground(String sessionToken, @Block PFLogInCallback block);
-    @Method(selector = "enableRevocableSessionInBackground")
-    public static native BFTask<Void> enableRevocableSessionInBackground();
-    @Method(selector = "enableRevocableSessionInBackgroundWithBlock:")
-    public static native void enableRevocableSessionInBackground(@Block PFUserSessionUpgradeCallback block);
     @Method(selector = "logOut")
     public static native void logOut();
-    @Method(selector = "logOutInBackground")
-    public static native BFTask<Void> logOutInBackground();
-    @Method(selector = "logOutInBackgroundWithBlock:")
-    public static native void logOutInBackground(@Block PFLogOutCallback block);
     public static boolean requestPasswordReset(String email) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = requestPasswordReset(email, ptr);
@@ -138,11 +152,5 @@ import org.robovm.pods.bolts.*;
     }
     @Method(selector = "requestPasswordResetForEmail:error:")
     private static native boolean requestPasswordReset(String email, NSError.NSErrorPtr error);
-    @Method(selector = "requestPasswordResetForEmailInBackground:")
-    public static native BFTask<Void> requestPasswordResetInBackground(String email);
-    @Method(selector = "requestPasswordResetForEmailInBackground:target:selector:")
-    public static native void requestPasswordResetInBackground(String email, NSObject target, Selector selector);
-    @Method(selector = "requestPasswordResetForEmailInBackground:block:")
-    public static native void requestPasswordResetInBackground(String email, @Block PFRequestPasswordResetCallback block);
     /*</methods>*/
 }

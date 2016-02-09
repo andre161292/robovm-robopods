@@ -45,7 +45,7 @@ import org.robovm.pods.facebook.core.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public FBSDKShareOpenGraphValueContainer() {}
-    protected FBSDKShareOpenGraphValueContainer(long handle) { super(handle); }
+    protected FBSDKShareOpenGraphValueContainer(Handle h, long handle) { super(h, handle); }
     protected FBSDKShareOpenGraphValueContainer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,7 +65,7 @@ import org.robovm.pods.facebook.core.*;
         setPhoto0(photo, key);
     }
     public void putString(String key, String string) {
-        setString0(key, string);
+        setString0(string, key);
     }
     public void putURL(String key, NSURL URL) {
         setURL0(URL, key);
