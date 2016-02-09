@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.robovm</groupId>
         <artifactId>robopods-google-interchange-utilities-parent</artifactId>
-        <version>1.8.1-SNAPSHOT</version>
+        <version>1.13.1-SNAPSHOT</version>
     </parent>
     <artifactId>robopods-google-interchange-utilities-ios</artifactId>
     <name>RoboPods Google Interchange Utilities iOS</name>
