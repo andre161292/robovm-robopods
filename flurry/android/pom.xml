@@ -4,7 +4,6 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-flurry-parent</artifactId>
         <version>1.13.0</version>
-        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-flurry-android</artifactId>
     <name>RoboPods Flurry Android</name>

@@ -6,7 +6,6 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-components-parent</artifactId>
         <version>1.13.0</version>
-        <relativePath>../</relativePath>
     </parent>
 
     <artifactId>robopods-dialog-parent</artifactId>

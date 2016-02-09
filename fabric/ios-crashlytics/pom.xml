@@ -4,7 +4,6 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-fabric-parent</artifactId>
         <version>1.13.0</version>
-        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-fabric-ios-crashlytics</artifactId>
     <name>RoboPods Fabric Crashlytics iOS</name>

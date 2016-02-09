@@ -4,7 +4,6 @@
         <groupId>org.robovm</groupId>
         <artifactId>robopods-google-networking-utilities-parent</artifactId>
         <version>1.13.0</version>
-        <relativePath>../</relativePath>
     </parent>
     <artifactId>robopods-google-networking-utilities-ios</artifactId>
     <name>RoboPods Google Networking Utilities iOS</name>
