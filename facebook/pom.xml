@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.robovm</groupId>
         <artifactId>robopods-parent</artifactId>
-        <version>1.13.1-SNAPSHOT</version>
+        <version>1.14.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>robopods-facebook-parent</artifactId>
@@ -35,5 +35,10 @@
 
     <modules>
         <module>ios</module>
+        <module>ios-audience</module>
+        <module>ios-core</module>
+        <module>ios-login</module>
+        <module>ios-messenger</module>
+        <module>ios-share</module>
     </modules>
 </project>

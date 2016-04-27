@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.robovm</groupId>
         <artifactId>robopods-parent</artifactId>
-        <version>1.13.1-SNAPSHOT</version>
+        <version>1.14.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>robopods-heyzap-parent</artifactId>
@@ -33,8 +33,7 @@
         </plugins>
     </build>
 
-    <modules>
-        <module>android</module>
+    <modules>        
         <module>ios</module>
     </modules>
 </project>

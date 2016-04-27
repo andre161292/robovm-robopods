@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>org.robovm</groupId>
-    <version>1.13.1-SNAPSHOT</version>
+    <version>1.14.1-SNAPSHOT</version>
     <artifactId>robopods-parent</artifactId>
     <name>RoboPods Parent</name>
     <packaging>pom</packaging>
@@ -174,7 +174,7 @@
     </pluginRepositories>
 
     <modules>
-        <module>components</module>
+        <module>plugins</module>
 
         <module>bolts</module>
         <module>chartboost</module>
@@ -185,7 +185,6 @@
         <module>google-analytics</module>
         <module>google-mobile-ads</module>
         <module>google-play-games</module>
-        <module>google-plus</module>
         <module>google-signin</module>
         <module>heyzap</module>
         <module>parse</module>

@@ -1,12 +1,12 @@
 # RoboPods for Heyzap
 
-Mobile Advertising done right.
+The mobile ad network Heyzap runs multiple premium networks under one integration so you can dynamically test ad networks against each other and visualize their combined performance.
+
 
 ## Available RoboPods
 
 | Platform            | Version |
 |---------------------|---------|
-| [Android](android/) | 9.3.9   |
 | [iOS](ios/)         | 9.3.5   |
 |                     |         |
 

@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.robovm</groupId>
         <artifactId>robopods-parent</artifactId>
-        <version>1.13.1-SNAPSHOT</version>
+        <version>1.14.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>robopods-flurry-parent</artifactId>
@@ -34,9 +34,6 @@
     </build>
 
     <modules>
-        <module>android</module>
-        <module>android-ads</module>
-        <module>android-analytics</module>
         <module>ios</module>
         <module>ios-ads</module>
         <module>ios-analytics</module>
