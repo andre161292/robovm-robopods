@@ -22,5 +22,6 @@ buildscript {
 }
 
 compile "com.mobidevelop.robovm:robopods-google-apis-ios:$robopodsVersion"
+
 compile "com.mobidevelop.robovm:robopods-google-instance-ido-is:$robopodsVersion"
 
